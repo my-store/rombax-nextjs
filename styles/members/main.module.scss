@@ -1,0 +1,17 @@
+.membersItemContainer {
+  width: 100%;
+
+  .membersItem {
+    width: 100%;
+    @media (min-width: 1000px) {
+      cursor: pointer;
+    }
+    &:hover {
+      background-color: rgb(240, 240, 240);
+    }
+
+    .membersItemTitle {
+      font-size: 20px;
+    }
+  }
+}

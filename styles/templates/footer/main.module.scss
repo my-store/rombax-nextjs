@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  background-color: rgb(0, 128, 117);
+  color: white;
+  display: flex;
+
+  .footerContact,
+  .footerAbout,
+  .footerSocial {
+    /*  */
+
+    .footerTitle {
+    }
+    .footerLink {
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .footer {
+    .footerContact,
+    .footerAbout,
+    .footerSocial {
+      /*  */
+
+      .footerTitle {
+      }
+      .footerLink {
+      }
+    }
+  }
+}
