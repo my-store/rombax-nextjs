@@ -1,8 +1,8 @@
 import React from "react"
-import styles from "../../styles/members/main.module.scss"
+import styles from "../../../styles/members/main.module.scss"
 
 export const getServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/members/${context.params.id}`)
+  const res = await fetch(`http://127.0.0.1:3000/api/members/${context.params.id}`)
   const member = await res.json()
 
   return {

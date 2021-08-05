@@ -4,7 +4,7 @@ import styles from "../../styles/members/main.module.scss"
 import Link from "next/link"
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/members")
+  const res = await fetch("http://127.0.0.1:3000/api/members")
   const members = await res.json()
 
   return {
@@ -31,18 +31,19 @@ export default class Members extends Component {
   render() {
     if (this.state._isLoading) {
       return <Loading />
-    } 
-    else {
-      return(
+    } else {
+      return (
         <div className={styles.membersItemContainer}>
-          {this.state.members.map((data, index) => {
+          {this.state.members.map((data) => {
             return (
-              <Link href="/members/[id]" as={`/members/${data._id}`}>
-                <div className={styles.membersItem}>
-                  <h1 className={styles.membersItemTitle}>{data.name}</h1>
-                  <p key={index}>{data.address}</p>
-                </div>
-              </Link>
+              <div className={styles.membersItem} key={data._id}>
+                <Link href="/members/[id]" as={`/members/${data._id}`}>
+                  <a>
+                    <h1 className={styles.membersItemTitle}>{data.name}</h1>
+                    <p>{data.address}</p>
+                  </a>
+                </Link>
+              </div>
             )
           })}
         </div>
