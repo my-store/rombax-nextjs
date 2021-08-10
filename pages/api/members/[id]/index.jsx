@@ -3,11 +3,22 @@ const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
 
 export default async function handler(req, res)
 {
-    try {
-        const member = await DB.asyncFind({_id: req.query.id})
-        res.status(200).json(member)
+    if(req.method === "GET") {
+        try {
+            const member = await DB.asyncFind({_id: req.query.id})
+            res.status(200).json({
+                data: member,
+                message: "Data fetched."
+            })
+        }
+        catch(error) {
+            res.status(error).json(error)
+        }
     }
-    catch(error) {
-        res.status(error).json(error)
+    else if(req.method === "PUT") {
+      // 
+    }
+    else if(req.method === "POST") {
+      // 
     }
 }
