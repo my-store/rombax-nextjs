@@ -1,0 +1,17 @@
+.aboutContainer {
+    width: 100%;
+}
+
+@media (min-width: 1000px) {
+    .aboutContainer {
+        padding: 10px;
+        max-width: 800px;
+
+        h1 {
+            font-size: 20px;
+        }
+        p {
+            font-size: 14px;
+        }
+    }
+}

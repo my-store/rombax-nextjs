@@ -2,13 +2,13 @@ import React, { Component } from "react"
 import Loading from "../templates/loading"
 import styles from "../../styles/members/main.module.scss"
 import Link from "next/link"
+import Head from "next/head"
 
 const { AsyncNedb } = require("nedb-async")
-const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
+const DB = new AsyncNedb({ filename: "databases/Members.db", autoload: true })
 
-export const getStaticProps = async () => 
-{
-  const members = await DB.asyncFind({}, [['limit', 100]])
+export const getStaticProps = async () => {
+  const members = await DB.asyncFind({}, [["limit", 100]])
 
   return {
     props: {
@@ -31,30 +31,37 @@ export default class Members extends Component {
       members: this.props.members,
     })
   }
-  render() 
-  {
+  render() {
     if (this.state._isLoading) {
       return <Loading />
-    }
-    else {
+    } else {
       return (
-        <div className={styles.membersItemContainer}>
-          {
-            this.state.members.length > 0 ?
+        <div>
+          <Head>
+            <title>Rombax | Members</title>
+            <meta name="keywords" content="Data member Rombax Family Brebes" />
+          </Head>
+          <div className={styles.membersItemContainer}>
+            {this.state.members.length > 0 ? (
               this.state.members.map((data) => {
                 return (
                   <div className={styles.membersItem} key={data._id}>
                     <Link href="/members/[id]" as={`/members/${data._id}`}>
                       <a>
-                        <h1 className={styles.membersItemTitle}>{data.name}</h1>
-                        <p>{data.address}</p>
+                        <div className={styles.membersPhoto}></div>
+                        <div className={styles.membersDetail}>
+                          <h1 className={styles.membersItemTitle}>{data.name}</h1>
+                          <p>{data.address}</p>
+                        </div>
                       </a>
                     </Link>
                   </div>
                 )
               })
-            : <p className={styles.emptyData}>Masih kosong.</p>
-          }
+            ) : (
+              <p className={styles.emptyData}>Masih kosong.</p>
+            )}
+          </div>
         </div>
       )
     }
