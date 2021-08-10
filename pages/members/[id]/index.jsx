@@ -1,18 +1,27 @@
 import React from "react"
 import styles from "../../../styles/members/main.module.scss"
 
-export const getServerSideProps = async (context) => {
-  const res = await fetch(`http://127.0.0.1:3000/api/members/${context.params.id}`)
-  const member = await res.json()
+const { AsyncNedb } = require("nedb-async")
+const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
+
+export const getServerSideProps = async (context) => 
+{
+  const member = await DB.asyncFindOne({_id: context.params.id})
 
   return {
     props: {
-      member: member[0]
+      member: member
     }
   }
 }
 
-export default function Member({ member }) {
+const deleteMember = async _memberID =>
+{
+  // await DB.asyncRemove({_id: _memberID})
+}
+
+export default function Member({ member }) 
+{
   return(
     <div className={styles.membersItem}>
       <h1 className={styles.membersItemTitle}>{member.name}</h1>
