@@ -1,7 +1,7 @@
 const { AsyncNedb } = require("nedb-async")
 const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
 
-export default async function handler(req, res)
+async function handler(req, res)
 {
   if(req.method === "GET") {
     try {
@@ -27,3 +27,5 @@ export default async function handler(req, res)
     // 
   }
 }
+
+export default handler
