@@ -14,8 +14,7 @@ export default function Loader()
         zIndex: 5,
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "rgba(255,255,255,0.5)",
+        justifyContent: "center"
       }}
     >
       <Loading type="bars" color="#165473" width={50} height={50} />

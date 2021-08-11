@@ -1,11 +1,12 @@
 .newMemberBtn {
   z-index: 5;
   position: fixed;
-  background-color: maroon;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  // background-image: url();
+  background-image: url(../../public/icons/new-btn.png);
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(248, 248, 248);
 }
 .newMemberForm {
   position: fixed;
@@ -86,6 +87,13 @@
     cursor: pointer;
     right: 100px;
     bottom: 100px;
+    background-size: 15px 15px;
+    &:hover {
+      background-color: rgb(236, 236, 236);
+    }
+    &:active {
+      background-size: 12px 12px;
+    }
   }
   .newMemberForm {
     form {
@@ -97,8 +105,8 @@
       .newMemberTitle {
         padding: 10px 0px 5px 0px;
         margin-bottom: 10px;
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 18px;
+        line-height: 18px;
       }
       .formGroup {
         label {
@@ -115,11 +123,14 @@
         button {
           height: 30px;
           min-height: 30px;
-          font-size: 13px;
+          font-size: 14px;
           font-weight: bold;
           cursor: pointer;
           &:hover {
             opacity: 0.7;
+          }
+          &:active {
+            font-size: 12px;
           }
         }
       }
