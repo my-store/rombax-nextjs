@@ -2,16 +2,16 @@ import React from "react"
 import styles from "../../../styles/members/main.module.scss"
 import Head from "next/head"
 
-const { AsyncNedb } = require("nedb-async")
-const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
+import { server } from "../../../config/server"
 
 export const getServerSideProps = async (context) => 
 {
-  const member = await DB.asyncFindOne({_id: context.params.id})
+  const data = await fetch(`${server}/api/members/${context.params.id}`)
+  const member = await data.json()
 
   return {
     props: {
-      member: member
+      member: member.data
     }
   }
 }

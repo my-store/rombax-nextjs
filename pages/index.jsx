@@ -13,7 +13,7 @@ export default class Home extends Component
     return (
       <div className={styles.homepageContainer}>
         <Head>
-          <title>Rombax | Home</title>
+          <title>Beranda | Rombax</title>
           <meta name="keywords" content="Rombax Family Blog" />
         </Head>
 

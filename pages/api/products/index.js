@@ -1,15 +1,19 @@
 const { AsyncNedb } = require("nedb-async")
-const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
+const DB = new AsyncNedb({ filename: "databases/Products.db", autoload: true })
 
-export default async function handler(req, res)
+async function handler(req, res) 
 {
-  if(req.method === "GET") {
-      res.status(200).json({
-          data: null,
-          message: "Data fetched."
-      })
+  if (req.method === "GET") {
+    const products = await DB.asyncFind({}, [["limit", 100]])
+    res.status(200).json({
+      data: products,
+      message: `${products.length} data fetched.`
+    })
   }
-  else if(req.method === "POST") {
-    // 
+  else if (req.method === "POST") {
+    re.status(200).json({
+      message: "Success"
+    })
   }
 }
+export default handler
