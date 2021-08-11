@@ -7,7 +7,13 @@ import Head from "next/head"
 import { server } from "../../config/server"
 
 async function loadMembers() {
-  const data = await fetch(`${server}/api/members`)
+  const data = await fetch(`${server}/api/members`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "User-Agent": "*"
+    }
+  })
   const members = await data.json()
   return members
 }

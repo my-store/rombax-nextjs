@@ -7,7 +7,13 @@ import { server } from "../../../config/server"
 
 export const getServerSideProps = async (context) => 
 {
-  const data = await fetch(`${server}/api/members/${context.params.id}`)
+  const data = await fetch(`${server}/api/members/${context.params.id}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "User-Agent": "*"
+    }
+  })
   const member = await data.json()
 
   return {
