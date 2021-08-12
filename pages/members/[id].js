@@ -43,14 +43,7 @@ export const getStaticPaths = async () =>
 
 export const getStaticProps = async ({ params }) => 
 {
-  const request = await fetch(`${server}/api/members/${params.id}`, {
-    method: "GET",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-      "User-Agent": "*"
-    }
-  })
+  const request = await fetch(`${server}/api/members/${params.id}`)
   const member = await request.json()
 
   return {

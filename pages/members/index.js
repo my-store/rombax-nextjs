@@ -48,7 +48,7 @@ export default class Members extends Component {
       },
       body: JSON.stringify(member)
     })
-    // const response = await request.json()
+    const response = await request.json()
     // Reset form
     document.getElementById("new-member-form").reset()
     // Reload member-lists
