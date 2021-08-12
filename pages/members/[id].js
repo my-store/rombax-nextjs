@@ -28,14 +28,7 @@ export default function Member({ member })
 
 export const getStaticPaths = async () => 
 {
-  const request = await fetch(`${server}/api/members`, {
-    method: "GET",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-      "User-Agent": "*"
-    }
-  })
+  const request = await fetch(`${server}/api/members`)
   const members = await request.json()
   const paths = members.map(_mbr => {
     return {
