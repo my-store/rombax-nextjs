@@ -17,7 +17,7 @@ export const getServerSideProps = async (context) =>
 
   return {
     props: {
-      member: member.data
+      member: member
     }
   }
 }

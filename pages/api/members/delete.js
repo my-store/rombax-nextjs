@@ -1,18 +1,26 @@
-async function handler(req, res) 
-{
-    const { AsyncNedb } = require("nedb-async")
-    const DB = new AsyncNedb({filename: "databases/Members.db", autoload: true})
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
 
+export default async function handler(req, res) 
+{
     if(req.method === "POST") {
-        await DB.asyncRemove({_id: JSON.parse(req.body).data._id})
-        res.status(200).json({
-            message: "Success"
-        })
-    }
-    else {
-        res.status(404).json({
-            message: "Service not found."
-        })
+        try {
+            const { id } = JSON.parse(req.body)
+            await prisma.members.delete({
+                where: {
+                    id: Number(id)
+                }
+            })
+            res.status(200).json({
+                status: 1,
+                message: "Product deleted"
+            })
+        }
+        catch(error) {
+            res.status(error).json({
+                status: error,
+                message: "Failed to delete product"
+            })
+        }
     }
 }
-export default handler

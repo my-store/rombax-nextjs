@@ -21,7 +21,7 @@ export const getStaticProps = async () => {
   const members = await loadMembers()
   return {
     props: {
-      members: members.data,
+      members: members,
     },
   }
 }
@@ -47,37 +47,36 @@ export default class Members extends Component {
       phone: document.getElementById("new-member-phone").value,
       gender: document.getElementById("new-member-gender").value,
     }
-    const request = await fetch(`${server}/api/members`, {
+    const request = await fetch(`${server}/api/members/insert`, {
       method: "POST",
       headers: {
         "Accept": "application/json"
       },
       body: JSON.stringify(member)
     })
-    const response = await request.json()
+    // const response = await request.json()
     // Reset form
     document.getElementById("new-member-form").reset()
-    // Push new data at first
+    // Reload member-lists
+    const members = await loadMembers()
     this.setState({
-      members: [response.data].concat(this.state.members),
+      members: members,
       _newMemberFormActive: false
     })
   }
-  removeMember = async _member =>
+  removeMember = async _id =>
   {
     await fetch(`${server}/api/members/delete`, {
       method: "POST",
       headers: {
         "Accept": "application/json"
       },
-      body: JSON.stringify({
-        data: _member
-      })
+      body: JSON.stringify({id: _id})
     })
     .then(res => res.json())
     .then( async result => {
       const members = await loadMembers()
-      this.setState({members: members.data})
+      this.setState({members: members})
     })
     .catch(error => console.log(error))
   }
@@ -122,8 +121,8 @@ export default class Members extends Component {
           {this.state.members.length > 0 ? (
             this.state.members.map((data) => {
               return (
-                <div className={styles.membersItem} key={data._id}>
-                  <Link href="/members/[id]" as={`/members/${data._id}`}>
+                <div className={styles.membersItem} key={data.id}>
+                  <Link href="/members/[id]" as={`/members/${data.id}`}>
                     <a>
                       <div className={styles.membersPhoto}></div>
                       <div className={styles.membersDetail}>
@@ -134,7 +133,7 @@ export default class Members extends Component {
                   </Link>
                   {
                     this.state._isLogin == false ? 
-                      <button onClick={() => this.removeMember(data)}>Hapus</button> 
+                      <button onClick={() => this.removeMember(data.id)}>Hapus</button> 
                     : null
                   }
                 </div>

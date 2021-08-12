@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./Rombax.db"
+}
+
+model Products {
+  id        Int    @id @default(autoincrement())
+  name      String
+  price     Int
+  discount  Int
+  available Int
+}
+
+model Members {
+  id      Int    @id @default(autoincrement())
+  name    String
+  address String
+  phone   String
+  gender  String
+}

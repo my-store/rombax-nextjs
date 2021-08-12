@@ -2,6 +2,14 @@ import Head from "next/head"
 import React, { Component } from "react"
 import styles from "../styles/home/main.module.scss"
 import Loading from "./templates/loading"
+// import { server } from "../config/server"
+
+// export async function getStaticProps() 
+// {
+//   return {
+//     props: {}
+//   }
+// }
 
 export default class Home extends Component
 {

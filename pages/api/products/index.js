@@ -1,19 +1,12 @@
-async function handler(req, res) 
-{
-  const { AsyncNedb } = require("nedb-async")
-  const DB = new AsyncNedb({ filename: "databases/Products.db", autoload: true })
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
 
-  if (req.method === "GET") {
-    const products = await DB.asyncFind({}, [["limit", 100]])
-    res.status(200).json({
-      data: products,
-      message: `${products.length} data fetched.`
+export default async function handler(req, res) 
+{
+    const products = await prisma.products.findMany({
+        orderBy: {
+            id: "desc"
+        }
     })
-  }
-  else if (req.method === "POST") {
-    re.status(200).json({
-      message: "Success"
-    })
-  }
+    res.status(200).json(products)
 }
-export default handler
