@@ -1,6 +1,6 @@
 import Nav from "./Nav"
 import Footer from "./Footer"
-import styles from "../styles/layout.module.scss"
+import styles from "../../styles/layout.module.scss"
 
 export default function Layout({children})
 {
