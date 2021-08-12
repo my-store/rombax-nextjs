@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 # Database
-.db
+database/.db
