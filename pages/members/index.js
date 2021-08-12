@@ -3,7 +3,6 @@ import Loading from "../templates/loading"
 import styles from "../../styles/members/main.module.scss"
 import Link from "next/link"
 import Head from "next/head"
-
 import { server } from "../../config/server"
 
 async function loadMembers() {

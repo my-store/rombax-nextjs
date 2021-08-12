@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import styles from "../../../styles/members/main.module.scss"
 import Head from "next/head"
 import Loading from "../../templates/loading"
-
 import { server } from "../../../config/server"
 
 export const getServerSideProps = async (context) => 
